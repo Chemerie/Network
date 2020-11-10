@@ -1,0 +1,74 @@
+{% extends "network/layout.html" %}
+
+
+{% block body %}
+<h4 style="margin-left: 10px;"> Followers Posts</h4>
+<div id="all-post">
+
+	<div class="pagination">
+		<span class="page-item">
+			{% if page_obj.has_previous %}
+			<a  href="?page=1" aria-label="Previous">first</a>
+			<a  href="?page={{page_obj.previous_page_number}}" aria-label="Previous">&laquo;previous</a>
+			{% endif %}
+
+			{% for post in page_obj.object_list %}
+				<div class="mini-post">
+					<a href=""><div  id="pics-div"></div></a>
+					<div>
+					<a class="nav-link" href="{% url 'profile' post.id %}"><strong>{{post.poster}}</strong></a>
+					<small>{{post.date}}</small>
+					<div class="content">
+						<p>{{post.content}}</p>
+					
+					</div>
+					<div style="border: 1px solid #ddd; display: flex; padding: 5px; margin-top: 5px;">
+					<span style="color: red; font-size: 1.5em; margin-top: 0px;">&hearts;</span>
+					<span class="like-count">0</span><span style="visibility: hidden;" class="post-id">{{post.id}}</span><span class="is-liked"></span>
+					<button class="like-button btn btn-basic">Like</button>
+					</div>
+				</div>
+				</div>
+			{% endfor %}
+
+			Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}.
+			
+
+			{% if page_obj.has_next %}
+			
+				<a href="?page={{page_obj.next_page_number}}"  aria-label="Next"> &raquo;next</a>
+				<a href="?page={{page_obj.paginator.num_pages}}"  aria-label="Next">last</a>
+			
+			{% endif %}
+		</span>
+
+		</div>
+
+
+
+
+
+
+
+<!-- 
+	<div>
+		{% for post in posts%}
+			<div class="mini-post">
+				<a href=""><div  id="pics-div"></div></a>
+				<a class="nav-link" href="{% url 'profile' post.id %}"><strong>{{post.poster}}</strong></a>
+				<div class="content">
+					<p>{{post.content}}</p>
+					
+				</div>
+				{{post.date}}<br>
+				<span style="color: red; font-size: 1.5em; margin-top: 0px;">&hearts;</span>
+				<span>{{post.likes}}</span>
+
+			</div>
+		{% endfor %}
+</div>
+		 -->
+
+	</div>
+		
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends "network/layout.html" %}
+
+
+{% block body %}
+<h4>User profile of {{profile.username}}</h4>
+<div class="prof-top">
+	<div style="margin-right: 100px;">
+		<h6>Profile picture</h6>
+		<div id="pic-div"></div>
+		<div>
+			Username: <strong id="dguy">{{profile.username}}</strong><br>
+			Email: <strong><i>{{profile.email}}</i></strong><br>
+			Following:	<strong style="color: red;" id="num_following"></strong>  <br>
+			Followed:	<strong style="color: red;" id="num_followed"></strong>
+		</div>
+	</div>
+			 {% if user.is_authenticated %}
+			<form id="follow_form">
+			{% csrf_token %}
+				<input  type="hidden" name="following" value="{{user.username}}">
+				<p style="display: none; position: relative;" id="followi-guy">{{user.username}}</p>
+				<input type="hidden" name="followed" value="{{profile.username}}">
+				<div id="follow-btn-div" ></div>
+
+			</form>
+			{% endif %}
+
+</div>
+
+<div class="prof-bottom">
+	<h5>Posts by {{profile.username}} </h5>
+		<div class="pagination">
+		<span class="page-item">
+			{% if page_obj.has_previous %}
+			<a  href="?page=1" aria-label="Previous">first</a>
+			<a  href="?page={{page_obj.previous_page_number}}" aria-label="Previous">&laquo;previous</a>
+			{% endif %}
+		
+
+				{% for post in page_obj.object_list %}
+				<div style="margin: 10px; border: 1px solid #ddd">
+					<small>{{post.date}}</small>
+				<div class="content">
+					<p class="main-content">{{post.content}}</p>		
+				</div>
+
+				{% if post.poster == user.username %}
+					<div class="content-edit" style="display: none;">
+						<textarea class="edit-content" cols="30" rows="5">{{post.content}}</textarea><br>
+						<button class="save-button btn btn-primary">Save</button>
+					</div>
+				{% endif %}
+
+
+				<div style="display: flex; border: 1px solid #ddd">
+				<span style="color: red; font-size: 1.5em; margin-top: 0px;">&hearts;</span>
+				<span class="like-count">0</span><span style="visibility: hidden;" class="post-id">{{post.id}}</span><span class="is-liked"></span>
+				<button class="like-button btn btn-basic" style="margin-right: 50px;">Like</button><br>
+				{% if post.poster == user.username %}
+					<button class="edit-button btn btn-link">Edit</button>
+				{% endif %}
+				</div>
+				</div>
+				{% endfor %}
+				
+				Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}.
+			
+
+			{% if page_obj.has_next %}
+			
+				<a href="?page={{page_obj.next_page_number}}"  aria-label="Next"> &raquo;next</a>
+				<a href="?page={{page_obj.paginator.num_pages}}"  aria-label="Next">last</a>
+			
+			{% endif %}
+		</span>
+
+		</div>
+
+
+</div>
+
+
+
+
+
+<!-- 	<h5>Posts by {{profile.username}} </h5>
+	<div>
+		{% for post in posts%}
+		<div class="content">
+			<p>{{post.content}}</p>		
+		</div>
+		{{post.date}}<br>
+		<span style="color: red; font-size: 1.5em; margin-top: 0px;">&hearts;</span>
+		<span>{{post.likes}}</span>
+			{% if post.poster == user.username %}
+				<a class="nav-link" href="">Edit</a>
+			{% endif %}
+		{% endfor %}
+	</div>
+	
+</div> -->
+
+{% endblock %}
