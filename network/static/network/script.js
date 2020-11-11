@@ -155,11 +155,11 @@ document.addEventListener("DOMContentLoaded", function(){
     				if (like.liker == user.innerHTML){
     					likepid.push(like.p_id);
     					likeid.push(like.id);
-    				}
+    					}
     				
     				
-    			})
-
+    				})
+				})
     			var likepids= likepid.reverse();
 				var likers=(liker.reverse());
 				var likeids=(likeid.reverse());
@@ -227,8 +227,4 @@ document.addEventListener("DOMContentLoaded", function(){
 
 					})
     			
-
-
-			})
-
 });
