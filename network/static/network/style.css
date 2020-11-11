@@ -43,26 +43,28 @@ margin: 0; font-family: Arial;
 		}
 
 @media screen and (max-width: 600px){
-			.topnav.reponsive{
-				position: relative;
-			}
-			.topnav.responsive .icon{
-				position: absolute;
-				right: 0;
-				top: 0;
-			}
-			.topnav.responsive a{
-				float: none;
-				display: block;
-				text-align: left;
-			}
-			.topnav.responsive{position: relative;}
-			.topnav.responsive{
-				display: block;
-				width: 100%;
-				text-align: left;
-			}
+.topnav.reponsive{
+	position: relative;
 }
+.topnav.responsive .icon{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.topnav.responsive a{
+	float: none;
+	display: block;
+	text-align: left;
+}
+.topnav.responsive{position: relative;}
+	.topnav.responsive{
+		display: block;
+		width: 100%;
+		text-align: left;
+	}
+}
+
+
 #all-post{
 	
 	margin-left: 30px;
