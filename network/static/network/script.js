@@ -231,9 +231,4 @@ document.addEventListener("DOMContentLoaded", function(){
 
 			})
 
-
-    	
-
-    
-
 });

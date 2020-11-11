@@ -43,32 +43,17 @@
 		</span>
 
 		</div>
+	<script>
+		function myFunction(){
+			var x = document.getElementById("myTopnav");
+		if(x.className === "topnav"){
+			x.className += " responsive";
+		}else{
+			x.className = "topnav";
+		}
+	}
 
-
-
-
-
-
-
-<!-- 
-	<div>
-		{% for post in posts%}
-			<div class="mini-post">
-				<a href=""><div  id="pics-div"></div></a>
-				<a class="nav-link" href="{% url 'profile' post.id %}"><strong>{{post.poster}}</strong></a>
-				<div class="content">
-					<p>{{post.content}}</p>
-					
-				</div>
-				{{post.date}}<br>
-				<span style="color: red; font-size: 1.5em; margin-top: 0px;">&hearts;</span>
-				<span>{{post.likes}}</span>
-
-			</div>
-		{% endfor %}
-</div>
-		 -->
-
+	</script>
 	</div>
 		
 {% endblock %}

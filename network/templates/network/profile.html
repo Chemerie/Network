@@ -3,8 +3,8 @@
 
 {% block body %}
 <h4>User profile of {{profile.username}}</h4>
-<div class="prof-top">
-	<div style="margin-right: 100px;">
+<div class="prof-top" style="">
+	<div style="margin: 10px; border: 1px solid #ddd;">
 		<h6>Profile picture</h6>
 		<div id="pic-div"></div>
 		<div>
@@ -46,7 +46,7 @@
 
 				{% if post.poster == user.username %}
 					<div class="content-edit" style="display: none;">
-						<textarea class="edit-content" cols="30" rows="5">{{post.content}}</textarea><br>
+						<textarea required="" class="edit-content" cols="30" rows="5">{{post.content}}</textarea><br>
 						<button class="save-button btn btn-primary">Save</button>
 					</div>
 				{% endif %}
@@ -80,24 +80,16 @@
 </div>
 
 
+	<script>
+		function myFunction(){
+			var x = document.getElementById("myTopnav");
+		if(x.className === "topnav"){
+			x.className += " responsive";
+		}else{
+			x.className = "topnav";
+		}
+	}
 
-
-
-<!-- 	<h5>Posts by {{profile.username}} </h5>
-	<div>
-		{% for post in posts%}
-		<div class="content">
-			<p>{{post.content}}</p>		
-		</div>
-		{{post.date}}<br>
-		<span style="color: red; font-size: 1.5em; margin-top: 0px;">&hearts;</span>
-		<span>{{post.likes}}</span>
-			{% if post.poster == user.username %}
-				<a class="nav-link" href="">Edit</a>
-			{% endif %}
-		{% endfor %}
-	</div>
-	
-</div> -->
+	</script>
 
 {% endblock %}
