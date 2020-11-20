@@ -8,7 +8,7 @@
 		<h6>Profile picture</h6>
 		<div id="pic-div"></div>
 		<div>
-			Username: <strong id="dguy">{{profile.username}}</strong><br>
+			Username: <strong  id="dguy">{{profile.username}}</strong><br>
 			Email: <strong><i>{{profile.email}}</i></strong><br>
 			Following:	<strong style="color: red;" id="num_following"></strong>  <br>
 			Followed:	<strong style="color: red;" id="num_followed"></strong>
@@ -38,29 +38,36 @@
 		
 
 				{% for post in page_obj.object_list %}
-				<div style="margin: 10px; border: 1px solid #ddd">
-					<small>{{post.date}}</small>
-				<div class="content">
-					<p class="main-content">{{post.content}}</p>		
-				</div>
 
-				{% if post.poster == user.username %}
-					<div class="content-edit" style="display: none;">
-						<textarea required="" class="edit-content" cols="30" rows="5">{{post.content}}</textarea><br>
-						<button class="save-button btn btn-primary">Save</button>
+					<div class="mini-post">
+					<a href=""><div  id="pics-div"></div></a>
+					<div>
+					<a class="nav-link" href="{% url 'profile' post.id %}"><strong class="navigator">{{post.poster}}</strong></a>
+					
+						<small>{{post.date}}</small>
+						
+							<div style="border: 1px solid black;padding: 10px;" class="content-edited content"><p class="main-content">{{post.content}}</p></div>
+						
+					
+					
+						
+						<div class="content-edit" style="display: none;">
+							<textarea class="edit-content" cols="30" rows="5">{{post.content}}</textarea><br>
+							<button class="save-button btn btn-primary">Save</button>
+						</div>
+					
+					<div style="border: 1px solid #ddd; display: flex; padding: 5px; margin-top: 5px;">
+						
+					<span style="color: red; font-size: 1.5em; margin-top: 0px;">&hearts;</span>
+					<span class="like-count"></span><span style="visibility: hidden;" class="post-id">{{post.id}}</span><span class="is-liked"></span>
+					<div class="like-btn-div"></div>
+					
+				
+						<button class="edit-button btn btn-link">Edit</button>
+					
 					</div>
-				{% endif %}
-
-
-				<div style="display: flex; border: 1px solid #ddd">
-				<span style="color: red; font-size: 1.5em; margin-top: 0px;">&hearts;</span>
-				<span class="like-count">0</span><span style="visibility: hidden;" class="post-id">{{post.id}}</span><span class="is-liked"></span>
-				<button class="like-button btn btn-basic" style="margin-right: 50px;">Like</button><br>
-				{% if post.poster == user.username %}
-					<button class="edit-button btn btn-link">Edit</button>
-				{% endif %}
-				</div>
-				</div>
+					</div>
+					</div>
 				{% endfor %}
 				
 				Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}.

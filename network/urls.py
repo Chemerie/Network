@@ -20,6 +20,6 @@ urlpatterns = [
     path("getpost", views.getpost, name="getpost"),
     path("post/<int:post_id>", views.post, name="post"),
     path("like", views.like, name= "like"),
-    path("deletelike/<int:like_id>", views.deletelike, name="deletelike"),
+    path("deletelike/<int:postid>", views.deletelike, name="deletelike"),
     path("addlike/<int:postid>", views.addlike, name="addlike"),
 ]

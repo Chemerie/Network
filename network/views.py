@@ -24,7 +24,7 @@ def index(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, "network/allpost.html", {
+    return render(request, "network/index.html", {
         "page_obj": page_obj,
         "form": NewPOstForm(),
         })
@@ -52,7 +52,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(reverse("allpost"))
+    return HttpResponseRedirect(reverse("index"))
 
 
 def register(request):
@@ -103,10 +103,11 @@ def allpost(request):
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-
+    likes = Like.objects.all()
     return render(request, "network/allpost.html", {
         "page_obj": page_obj,
         "form": NewPOstForm(),
+        "likes": likes,
         })
 
 @login_required
@@ -189,7 +190,6 @@ def getpost(request):
     if request.method == "GET":
         return JsonResponse([post.serialize() for post in posts], safe=False)
 
-
         
 @csrf_exempt
 @login_required
@@ -203,32 +203,45 @@ def post(request, post_id):
         post.save()
         return HttpResponse(status=204)
         
+@csrf_exempt
+@login_required
+def addlike(request, postid):
+    post = Post.objects.get(pk=postid)
+    user = request.user.username
+    f = Like(liker=user, post_id =postid)
+    f.save()
+
+    if request.method == "PUT":
+        data = json.loads(request.body)
+        if data.get("likes") is not None:
+            post.likes = data["likes"]
+        post.save()
+        return HttpResponse(status=204)
+
+
+        
+@csrf_exempt
+@login_required
+def deletelike(request, postid):
+    post = Post.objects.get(pk=postid)
+    user = request.user.username
+    f = Like.objects.filter(liker=user, post_id =postid)
+    f.delete()
+
+    if request.method == "PUT":
+        data = json.loads(request.body)
+        if data.get("likes") is not None:
+            post.likes = data["likes"]
+        post.save()
+        return HttpResponse(status=204)
+
 
 @csrf_exempt
 @login_required
 def like(request):
-    # json_seriializer = serializers.get_serializer('json')
-    # data = json_seriializer.serialize(Like.objects.all(), ensure_ascii=False)
-    likes = Like.objects.all()
-    return JsonResponse([like.serialize() for like in likes], safe=False)
-    # return JsonResponse(data)
-
-
-@csrf_exempt
-@login_required
-def addlike(request, postid):
-    liker = request.user.username
-    f = Like(liker=liker, post_id=postid)
-    f.save()
+   
     likes = Like.objects.all()
     return JsonResponse([like.serialize() for like in likes], safe=False)
 
 
 
-@csrf_exempt
-@login_required
-def deletelike(request, like_id):
-    s = Like.objects.get(pk=like_id)
-    s.delete()
-    likes = Like.objects.all()
-    return JsonResponse([like.serialize() for like in likes], safe=False)
