@@ -33,26 +33,15 @@ document.addEventListener("DOMContentLoaded", function(){
 					mbtn.innerHTML="Unlike";
 					liked = like.id;
 				}
-				// if(like.p_id == post_ids[mind].innerHTML){
-				// 	counter = counter + 1;	
-				// }
 				
 			})
 			liking.push(liked);
-			// count.push(counter);
-			// like_counts[mind].innerHTML=count[mind];
-		
 				
 		mbtn.onclick = ()=>{
 			if(mbtn.innerHTML === "Like"){
 				mbtn.innerHTML = "Unlike";
 				like_counts[mind].innerHTML = parseInt(like_counts[mind].innerHTML) + 1;
 
-							// 		 fetch(`addlike/${post_ids[mind].innerHTML}`)
-							// 		 .then(response => response.json())
-							// 		 .then(posts => {
-									
-							// })
 						fetch(`addlike/${post_ids[mind].innerHTML}`, {
           				method: "PUT",
           				body: JSON.stringify({
@@ -67,12 +56,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 					likes.forEach(like=>{
 						if((like.p_id == post_ids[mind].innerHTML)&&(like.liker == user.innerHTML)){
-							
-    			// 			fetch(`deletelike/${like.id}`)
-							// .then(response => response.json())
-							// .then(posts => {
-									
-							// })
+	
 
 						fetch(`deletelike/${post_ids[mind].innerHTML}`, {
           				method: "PUT",
@@ -172,17 +156,6 @@ document.addEventListener("DOMContentLoaded", function(){
 	return false;
 }  
 })
-  	  	//get the posts from the database
-	fetch("getpost")
-  	.then(response => response.json())
-  	.then(posts =>{
-
-    	//for every post that returs from the database
-    	posts.forEach((post,ky)=>{
-    	//for each edit button on the temperate
-    	
-    	}) 
-    	})
     	 //get nodelists of the various posts from the template
     	var content_edited = document.querySelectorAll(".content-edited");//post contents div
     	var edit_bts = document.querySelectorAll(".edit-button");//edit buttons
@@ -223,77 +196,7 @@ document.addEventListener("DOMContentLoaded", function(){
 					edit_bts[am].style.visibility = 'visible';
 				}
 			}
-			})
-
-		 		
-	
-	
-// 	  	//get the Like features of each post from the template(nodelists)
-// 			var like_counts =  document.querySelectorAll(".like-count");// the like counts
-// 			var post_ids =  document.querySelectorAll(".post-id");//the post ids
-// 	  		var like_bts =  document.querySelectorAll(".like-button");// the Like buttons
-// 			var like_btns = Array.prototype.slice.call(like_bts);// the like buttons into array	
-// 			var user = document.querySelector("#main-user");//the user
-
-// 							var likepid=[];
-// 				var likeid=[];
-// 				var liker=[];
-// 				var count =[] ;
-// 				like_btns.forEach(buttons=>{
-// 					var indexa = like_btns.indexOf(buttons)
-// 					fetch("like")
-// 					.then(response => response.json())
-// 					.then(likes =>{
-// 						var counter =0;
-// 						likes.forEach(like=>{
-// 							if(like.p_id === (parseInt(post_ids[indexa].innerHTML))){
-// 								counter = counter+1;
-// 							}
-// 						if (like.liker === user.innerHTML){
-// 							likepid.push(like.p_id);
-//     						likeid.push(like.id);
-//     						liker.push(like.liker);
-// 						}
-// 						})
-// 						count.push(counter);
-// 						like_counts[indexa].innerHTML = count[indexa];
-// 						console.log(like_counts);
-// 	// 					if(likepid.includes(parseInt(post_ids[indexa].innerHTML )) ){
-// 	// 					like_bts[indexa].innerHTML = "Unlike";
-// 	// 					}else{
-// 	// 						like_bts[indexa].innerHTML = "Like";
-// 	// 					}
-						
-
-// 	// 				})
-// 	// 				console.log(like_bts[indexa].innerHTML);
-// 	// 				buttons.addEventListener("click",  function (){
-
-// 	// 				if(like_bts[indexa].innerHTML === "Like"){
-// 	// 					like_bts[indexa].innerHTML = "Unlike";
-						
-// 	// 				}
-
-// 	// 			})		
-
-// 	// })
-// //  var like_bts =  document.querySelectorAll(".like-btn")
-// //  like_bts.forEach(button=>{
-// //  	button.onclick = ()=>{
-// //  		clickMe(this);
-// //  	}
- 	
-// //  })
-
-
-// // function clickMe(f){
-// // 	if (f.innerHTML === "Like")	{
-// // 		f.innerHTML = "Unlike";
-// // 	}else{
-// // 			f.innerHTML = "Like";
-// // 		}
-// // 	}
-					
+			})		
 })
 
 

@@ -11,7 +11,6 @@
 			<form action="{% url 'newpost' %}" method="post" style="display: flex; flex-direction: column;">
 			{% csrf_token %}
 		
-				<!-- <textarea name="content" style="width: 100%;"></textarea><br> -->
 				{{form}}
 				<input type="submit" name="" value="Post" class="btn btn-sm btn-outline-primary" style="margin-top: 0px; width: 50px;	">		
 			</form>
@@ -42,9 +41,6 @@
 						<small>{{post.date}}</small>
 						
 							<div style="border: 1px solid black;padding: 10px;" class="content-edited content"><p class="main-content">{{post.content}}</p></div>
-						
-					
-					
 						
 						<div class="content-edit" style="display: none;">
 							<textarea class="edit-content" cols="30" rows="5">{{post.content}}</textarea><br>
@@ -82,11 +78,7 @@
 	</div>
 
 	<script>
-
-
-
-
-		
+	
 		function myFunction(){
 			var x = document.getElementById("myTopnav");
 		if(x.className === "topnav"){

@@ -16,7 +16,7 @@
 				<div class="mini-post">
 					<a href=""><div  id="pics-div"></div></a>
 					<div>
-					<a class="nav-link" href="{% url 'profile' post.id %}"><strong>{{post.poster}}</strong></a>
+					<a class="nav-link" href="{% url 'profile' post.id %}"><strong class="navigator">{{post.poster}}</strong></a>
 					<small>{{post.date}}</small>
 					<div class="content">
 						<p>{{post.content}}</p>
@@ -24,8 +24,8 @@
 					</div>
 					<div style="border: 1px solid #ddd; display: flex; padding: 5px; margin-top: 5px;">
 					<span style="color: red; font-size: 1.5em; margin-top: 0px;">&hearts;</span>
-					<span class="like-count">0</span><span style="visibility: hidden;" class="post-id">{{post.id}}</span><span class="is-liked"></span>
-					<button class="like-button btn btn-basic">Like</button>
+					<span class="like-count">{{post.likes}}</span><span style="visibility: hidden;" class="post-id">{{post.id}}</span><span class="is-liked"></span>
+					<div class="like-btn-div"></div>
 					</div>
 				</div>
 				</div>
