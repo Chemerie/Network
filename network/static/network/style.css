@@ -33,14 +33,14 @@ margin: 0; font-family: Arial;
 	text-decoration: none;
 }
 @media screen and (max-width: 600px){
-	.topnav a:not(:first-child){
-			display: none;
-			}
-		.topnav a.icon{
-				float: right;
-				display: block;
-			}
-		}
+.topnav a:not(:first-child){
+	display: none;
+}
+.topnav a.icon{
+	float: right;
+	display: block;
+}
+}
 
 @media screen and (max-width: 600px){
 .topnav.reponsive{
